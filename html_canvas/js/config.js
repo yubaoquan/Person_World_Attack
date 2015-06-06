@@ -16,7 +16,13 @@
         refreshInterval: 500,
 
         stoneImg: Util.getAPicture('../image/stone.png'),
-        wallImg: Util.getAPicture('../image/wall.png')
+        wallImg: Util.getAPicture('../image/wall.png'),
+
+        // maxFrameIndex: 800,
+        bulletWidth: 20,
+        bulletHeight: 10
+        // bulletOffsetXInBrick: 10,
+        // bulletOffsetYInBrick: 10
     };
 
     // confing.brickHeight : 25,

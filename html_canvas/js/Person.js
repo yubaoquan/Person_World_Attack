@@ -13,10 +13,10 @@ Person.persons = [];
 Person.prototype = {
     x: 0,
     y: 0,
-    lastX: 0,
-    lastY: 0,
     blood: 10,
     attackSkills: [],
+    //用于控制移动速度
+    moveInterval: 1,
     toString: function() {
         return ('我是' + this.name + ', 今年' + this.age + '岁.' + '我最擅长' + this.skill);
     },
@@ -59,32 +59,8 @@ Person.prototype = {
         this.world.setPerson(x, y, this);
         this.setPosition(x, y);
     },
-    setPosition: function(x, y) {
-        this.x = x;
-        this.y = y;
-    },
-    move: function(direction) {
-        this.lastX = this.x;
-        this.lastY = this.y;
-        switch (direction.toLowerCase()) {
-            case 'up':
-                this.y--;
-                break;
-            case 'down':
-                this.y++;
-                break;
-            case 'left':
-                this.x--;
-                break;
-            case 'right':
-                this.x++;
-                break;
-            default:
-                console.warn('Invalid direction:' + direction);
-                return;
-        }
-        // this.draw();
-    },
+    setPosition: BaseBehavior.setPosition,
+    move: BaseBehavior.move,
     scan: function() {
         var enemies = [];
         for (var i = 0; i < this.world.width; i++) {
@@ -120,9 +96,7 @@ Person.prototype = {
 
         }
     },
-    setAttribute: function(attName, attribute) {
-        this[attName.toString()] = attribute;
-    },
+    setAttribute: BaseBehavior.setAttribute,
     addAttackSkill: function(skill) {
         this.attackSkills.push(skill);
     },
@@ -135,18 +109,19 @@ Person.prototype = {
         var circleRadias = Config.brickWidth / 2;
         var pen = window.pen;
         pen.beginPath();
-        pen.arc(circleX, circleY, circleRadias, 0, Math.PI * 2, true);
+        pen.arc(circleX, circleY, circleRadias, 0, Math.PI * 2, false);
         pen.closePath();
         pen.fillStyle = '#000000';
         pen.fill();
 
-        var textX = this.x * Config.brickWidth;
-        var textY = (this.y + 1) * Config.brickWidth - 5;
+        var textX = this.x * Config.brickWidth + 5;
+        var textY = (this.y + 1) * Config.brickWidth - 10;
         pen.fillStyle = '#ffffff';
         pen.font = "italic 25px sans-serif";
 
         pen.fillText(this.name[0], textX, textY);
-    }
+    },
+    act: BaseBehavior.act
 
 
 };

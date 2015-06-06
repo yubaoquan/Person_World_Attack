@@ -6,10 +6,21 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
         getAPicture: function(src) {
-        	var img = new Image();
-        	img.src = src;
-        	return img;
+            var img = new Image();
+            img.src = src;
+            return img;
         }
+    };
+
+    Object.extend = function(des, source) {
+        for (p in source) {
+            des[p] = source[p];
+        }
+        return des;
+    };
+
+    Object.prototype.extend = function(object) {
+        return Object.extend.apply(this, [this, object]);
     };
     Util = util;
 }());

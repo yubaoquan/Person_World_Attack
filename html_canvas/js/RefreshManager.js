@@ -17,12 +17,10 @@ RefreshManager.prototype = {
         this.infoRows ++;
     },
     refresh: function() {
-        for (var i = 0; i < 100; i++) {
-            this.printInfo('xxxxxx');
-        }
+        this.printInfo('xxxxxx');
+        
         window.pen.clearRect(0, 0, Config.canvasWidth, Config.canvasHeight);
         for (var i = 0, len = this.thingsToDraw.length; i < len; i++) {
-            // console.info(this.thingsToDraw[i]);
             this.thingsToDraw[i].draw();
         }
     },
