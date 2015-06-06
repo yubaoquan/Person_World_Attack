@@ -3,23 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    
     <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
     <title>小人 世界 互相杀</title>
 </head>
 
 <body>
-
     <header>
-    	<h1>小人 世界 互相杀</h1>
+        <h1>小人 世界 互相杀</h1>
     </header>
-
-    <div>
+    <div class="main-wrapper">
+    <div class="status-list">
+        <div class="status-title">世界状态</div>
+        <div class="status-content">宁静...</div>
+    </div>
+    <div class="canvas-wrapper">
         <canvas id="world">
             Your browser does not support the canvas element.
         </canvas>
     </div>
-    
+    </div>
     <script src="../js/RefreshManager.js"></script>
     <script src="../js/draw.js"></script>
     <script src="../js/Util.js"></script>
