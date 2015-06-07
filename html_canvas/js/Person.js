@@ -60,7 +60,47 @@ Person.prototype = {
         this.setPosition(x, y);
     },
     setPosition: BaseBehavior.setPosition,
-    move: BaseBehavior.move,
+    move: function(direction) {
+
+        if (isNaN(this.stepCount)) {
+            this.stepCount = 1;
+        }
+
+        if (this.stepCount !== this.moveInterval) {
+            this.stepCount++;
+            return false;
+        }
+        var newX = this.x
+        var newY = this.y;
+        switch (direction.toLowerCase()) {
+            case 'up':
+                newY = this.y - 1;
+                break;
+            case 'down':
+                newY = this.y + 1;
+                break;
+            case 'left':
+                newX = this.x - 1;
+                break;
+            case 'right':
+                newX = this.x + 1;
+                break;
+            default:
+                console.warn('Invalid direction:' + direction);
+                return false;
+        }
+        if (!Util.isInWorld(newX, newY)) {
+            console.info('Not in world');
+            return false;
+        }
+        if (this.world.ground[newX][newY] !== World.grass) {
+            return false;
+        }
+        this.x = newX;
+        this.y = newY;
+        this.stepCount = 1;
+        return true;
+    },
     scan: function() {
         var enemies = [];
         for (var i = 0; i < this.world.width; i++) {
@@ -96,7 +136,6 @@ Person.prototype = {
 
         }
     },
-    setAttribute: BaseBehavior.setAttribute,
     addAttackSkill: function(skill) {
         this.attackSkills.push(skill);
     },
@@ -104,6 +143,9 @@ Person.prototype = {
         this.attackSkills[0].attack(this, enemy);
     },
     draw: function() {
+        if (this.isRemoved) {
+            return;
+        };
         var circleX = (this.x + 0.5) * Config.brickWidth;
         var circleY = (this.y + 0.5) * Config.brickWidth;
         var circleRadias = Config.brickWidth / 2;
@@ -121,30 +163,8 @@ Person.prototype = {
 
         pen.fillText(this.name[0], textX, textY);
     },
-    act: BaseBehavior.act
+    act: BaseBehavior.act,
+    moveInPath: BaseBehavior.moveInPath
 
 
 };
-
-// Person.draw = function(person) {
-//     console.info('Should be here');
-//     // console.info(person.lastX + ', ' + person.lastY);
-//     World.drawGrass(person.lastX, person.lastY);
-
-//     var circleX = (person.x + 0.5) * Config.brickWidth;
-//     var circleY = (person.y + 0.5) * Config.brickWidth;
-//     var circleRadias = Config.brickWidth / 2;
-//     var pen = window.pen;
-//     pen.beginPath();
-//     pen.arc(circleX, circleY, circleRadias, 0, Math.PI * 2, true);
-//     pen.closePath();
-//     pen.fillStyle = 'rgba(0,0,0,1)';
-//     pen.fill();
-
-//     var textX = person.x * Config.brickWidth;
-//     var textY = (person.y + 1) * Config.brickWidth - 5;
-//     pen.fillStyle = '#ffffff';
-//     pen.font = "italic 25px sans-serif";
-
-//     pen.fillText(person.name[0], textX, textY);
-// };

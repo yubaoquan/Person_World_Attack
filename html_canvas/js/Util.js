@@ -9,6 +9,12 @@
             var img = new Image();
             img.src = src;
             return img;
+        },
+        remove: function(obj) {
+            obj.isRemoved = true;
+        },
+        isInWorld: function(x, y) {
+            return x >=0 && x < Config.worldWidth && y >= 0 && y < Config.worldHeight;
         }
     };
 

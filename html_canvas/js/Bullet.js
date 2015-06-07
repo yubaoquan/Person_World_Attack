@@ -7,13 +7,11 @@ function Bullet(x, y, direction) {
 Bullet.prototype = {
     direction: 'u',
     setPosition: BaseBehavior.setPosition,
-    setAttribute: BaseBehavior.setAttribute,
     act: BaseBehavior.act,
     move: function() {
     	BaseBehavior.move.call(this, this.direction);
     },
     draw: function() {
-        // console.info('Not implement.');
         var drawX, drawY, drawW, drawH, circleX, circleY;
         var baseX = this.x * Config.brickWidth;
         var baseY = this.y * Config.brickWidth;
