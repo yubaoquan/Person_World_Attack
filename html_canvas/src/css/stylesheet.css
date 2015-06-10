@@ -75,3 +75,31 @@ header {
     border: 1px solid #c3c3c3;
     margin: auto;
 }
+
+.images {
+    position: absolute;
+    bottom: 20px;
+}
+
+.images ul li {
+    margin-left: 10px;
+    float: left;
+    list-style-type: none;
+}
+
+.images ul li div {
+    width: 20px;
+    height: 20px;
+}
+
+.img-stone {
+    background: url(../image/stone.png?__sprite) no-repeat;
+}
+
+.img-wall1 {
+    background: url(../image/wall.png?__sprite) no-repeat;
+}
+
+.img-wall2 {
+    background: url(../image/wall2.png?__sprite) no-repeat;
+}

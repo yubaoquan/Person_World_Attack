@@ -1,0 +1,1 @@
+!function(){var t=25,i=11,l=40,e={worldWidth:t,worldHeight:i,brickWidth:l,canvasWidth:t*l,canvasHeight:i*l,grassColor:"rgba(0,255,0,1)",wallColor:"rgba(255,0,0,1)",refreshInterval:500,stoneImg:Util.getAPicture("../image/stone.png"),wallImg:Util.getAPicture("../image/wall.png"),bulletWidth:20,bulletHeight:10};window.Config=e}();

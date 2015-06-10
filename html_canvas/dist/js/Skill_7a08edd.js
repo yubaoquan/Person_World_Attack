@@ -1,0 +1,1 @@
+function Skill(t){this.lethality=t}function Shoot(t){this.lethality=t}Skill.prototype={decreseBlood:function(t){t.changeBlood(-1*this.lethality)},attack:function(){}},Shoot.prototype=(new Skill).extend({attack:function(t,o){console.info(t.name+"向"+o.name+"开了一枪,"+o.name+"流了"+this.lethality+"滴血"),this.decreseBlood(o)}});
